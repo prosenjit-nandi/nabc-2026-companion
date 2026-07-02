@@ -30,12 +30,31 @@ function toIso(date, time) {
   )
 }
 
-async function main() {
-  const res = await fetch(SOURCE_URL)
-  if (!res.ok) {
-    throw new Error(`Failed to fetch schedule: ${res.status} ${res.statusText}`)
+async function fetchWithRetry(url, attempts = 3) {
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(10_000) })
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
+      return await res.json()
+    } catch (err) {
+      if (attempt === attempts) throw err
+      console.warn(`Fetch attempt ${attempt}/${attempts} failed (${err.message}), retrying...`)
+      await new Promise((r) => setTimeout(r, 2000 * attempt))
+    }
   }
-  const data = await res.json()
+}
+
+async function main() {
+  let data
+  try {
+    data = await fetchWithRetry(SOURCE_URL)
+  } catch (err) {
+    // The source site is occasionally flaky. Don't fail the whole deploy over a
+    // transient data-source outage — keep whatever schedule.json is already
+    // committed and let code/UI changes ship; the next scheduled run retries.
+    console.warn(`Could not fetch fresh schedule after retries (${err.message}). Keeping existing public/data/schedule.json.`)
+    return
+  }
 
   const events = data.rows.map((row) => {
     const hall = titleCase(row.hall)
