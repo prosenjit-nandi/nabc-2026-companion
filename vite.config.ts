@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ['favicon-32.png', 'apple-touch-icon.png', 'nabc-logo.png'],
       manifest: {
         name: 'NABC 2026 Companion',
-        short_name: 'NABC 2026 Companion',
+        short_name: 'NABC Companion',
         description: 'Live schedule companion for NABC 2026',
         start_url: '/nabc-2026-companion/',
         scope: '/nabc-2026-companion/',

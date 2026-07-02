@@ -46,25 +46,43 @@ function TopBar() {
   const now = useLiveClock()
   const { lastUpdated } = useScheduleContext()
   return (
-    <AppBar position="sticky" elevation={0}>
-      <Toolbar sx={{ justifyContent: 'space-between', gap: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+    <AppBar
+      position="sticky"
+      elevation={0}
+      sx={{ pt: 'env(safe-area-inset-top)' }}
+    >
+      <Toolbar sx={{ justifyContent: 'space-between', gap: 1.5 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25, minWidth: 0 }}>
           <Box
-            component="img"
-            src={`${import.meta.env.BASE_URL}nabc-logo.png`}
-            alt=""
-            sx={{ width: 34, height: 34, borderRadius: '8px' }}
-          />
-          <Box>
-            <Typography variant="subtitle1" sx={{ fontWeight: 800, lineHeight: 1.15 }}>
+            sx={{
+              width: 34,
+              height: 34,
+              flexShrink: 0,
+              borderRadius: '8px',
+              bgcolor: '#fff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+            }}
+          >
+            <Box
+              component="img"
+              src={`${import.meta.env.BASE_URL}nabc-logo.png`}
+              alt=""
+              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          </Box>
+          <Box sx={{ minWidth: 0 }}>
+            <Typography variant="subtitle1" noWrap sx={{ fontWeight: 800, lineHeight: 1.15 }}>
               NABC 2026
             </Typography>
-            <Typography variant="caption" sx={{ opacity: 0.8 }}>
+            <Typography variant="caption" noWrap sx={{ opacity: 0.8, display: 'block' }}>
               Synced {formatRelative(lastUpdated)}
             </Typography>
           </Box>
         </Box>
-        <Typography variant="h6" sx={{ fontWeight: 800 }}>
+        <Typography variant="body2" sx={{ fontWeight: 700, opacity: 0.9, flexShrink: 0 }}>
           {now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
         </Typography>
       </Toolbar>
