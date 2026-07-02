@@ -6,6 +6,7 @@ import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
 import { EventCard } from '../components/EventCard'
+import { HomeTip } from '../components/HomeTip'
 import { useScheduleContext } from '../context/ScheduleContext'
 import { getNowPlaying, getUpNext, currentOrFirstDay } from '../data/scheduleSelectors'
 
@@ -40,6 +41,8 @@ export function Home() {
 
   return (
     <Stack spacing={3} sx={{ pb: 2 }}>
+      <HomeTip />
+
       {day && (
         <Box>
           <Chip label={day} color="primary" sx={{ fontWeight: 700 }} />
