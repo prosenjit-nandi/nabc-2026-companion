@@ -9,6 +9,7 @@ import { EventCard } from '../components/EventCard'
 import { useScheduleContext } from '../context/ScheduleContext'
 import { groupByDay, getNowPlaying } from '../data/scheduleSelectors'
 import { buildIcs } from '../data/ics'
+import { EVENT } from '../config/event'
 
 export function MySchedule() {
   const { events, favoriteIds, isFavorite, toggleFavorite, loaded } = useScheduleContext()
@@ -19,7 +20,7 @@ export function MySchedule() {
 
   function exportToCalendar() {
     const ics = buildIcs(myEvents)
-    saveAs(new Blob([ics], { type: 'text/calendar;charset=utf-8' }), 'nabc-2026-my-schedule.ics')
+    saveAs(new Blob([ics], { type: 'text/calendar;charset=utf-8' }), `${EVENT.slug}-my-schedule.ics`)
   }
 
   if (!loaded) return null

@@ -2,8 +2,9 @@ import { act, render, renderHook, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ThemeModeProvider, useThemeMode } from './ThemeModeContext'
+import { EVENT } from '../config/event'
 
-const STORAGE_KEY = 'nabc-theme-mode'
+const STORAGE_KEY = `${EVENT.slug}-theme-mode`
 
 function makeMatchMediaMock(initialMatches: boolean) {
   let changeListener: ((e: MediaQueryListEvent) => void) | null = null

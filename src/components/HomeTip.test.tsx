@@ -2,8 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 import { HomeTip } from './HomeTip'
+import { EVENT } from '../config/event'
 
-const STORAGE_KEY = 'nabc-home-tip-dismissed'
+const STORAGE_KEY = `${EVENT.slug}-home-tip-dismissed`
 const TIP_TEXT = 'Tap the star to save a program to My Schedule'
 
 describe('HomeTip', () => {

@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles'
 import type { PaletteMode } from '@mui/material'
 
-// Palette sampled directly from the official NABC 2026 event logo (public/nabc-logo.png).
+// Palette sampled directly from the configured event's logo (see src/config/event.ts).
 const TEAL = '#116466'
 const TEAL_DARK = '#0a4547'
 const PEACH = '#ffcb9a'

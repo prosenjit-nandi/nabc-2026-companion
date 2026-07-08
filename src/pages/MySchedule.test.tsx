@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver'
 import { MySchedule } from './MySchedule'
 import { useScheduleContext } from '../context/ScheduleContext'
 import { makeEvent } from '../test/fixtures'
+import { EVENT } from '../config/event'
 
 vi.mock('../context/ScheduleContext', () => ({
   useScheduleContext: vi.fn(),
@@ -94,7 +95,7 @@ describe('MySchedule', () => {
     expect(mockedSaveAs).toHaveBeenCalledTimes(1)
     const [blob, filename] = mockedSaveAs.mock.calls[0]
     expect(blob).toBeInstanceOf(Blob)
-    expect(filename).toBe('nabc-2026-my-schedule.ics')
+    expect(filename).toBe(`${EVENT.slug}-my-schedule.ics`)
   })
 
   it('toggles a favorite off from within My Schedule', () => {

@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/nabc-2026-companion/',
+  base: '/event-companion/',
   plugins: [react()],
   resolve: {
     alias: {

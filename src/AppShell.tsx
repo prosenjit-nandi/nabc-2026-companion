@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import { FaHome, FaListUl, FaCalendarCheck, FaSearch, FaCog } from 'react-icons/fa'
 import { ScheduleProvider, useScheduleContext } from './context/ScheduleContext'
+import { EVENT } from './config/event'
 import { Home } from './pages/Home'
 import { Schedule } from './pages/Schedule'
 import { MySchedule } from './pages/MySchedule'
@@ -68,14 +69,14 @@ function TopBar() {
           >
             <Box
               component="img"
-              src={`${import.meta.env.BASE_URL}nabc-logo.png`}
+              src={`${import.meta.env.BASE_URL}${EVENT.logo}`}
               alt=""
               sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </Box>
           <Box sx={{ minWidth: 0 }}>
             <Typography variant="subtitle1" noWrap sx={{ fontWeight: 800, lineHeight: 1.15 }}>
-              NABC 2026
+              {EVENT.name}
             </Typography>
             <Typography variant="caption" noWrap sx={{ opacity: 0.8, display: 'block' }}>
               Synced {formatRelative(lastUpdated)}

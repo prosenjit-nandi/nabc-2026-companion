@@ -1,14 +1,19 @@
 import { describe, expect, it } from 'vitest'
 import { buildIcs } from './ics'
 import { makeEvent } from '../test/fixtures'
+import { EVENT } from '../config/event'
 
 describe('buildIcs', () => {
   it('produces a wrapper with no VEVENT blocks for an empty list', () => {
     const ics = buildIcs([])
     expect(ics).toBe(
-      ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//NABC 2026 Companion//EN', 'CALSCALE:GREGORIAN', 'END:VCALENDAR'].join(
-        '\r\n',
-      ),
+      [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        `PRODID:-//${EVENT.fullName}//EN`,
+        'CALSCALE:GREGORIAN',
+        'END:VCALENDAR',
+      ].join('\r\n'),
     )
   })
 
@@ -22,7 +27,7 @@ describe('buildIcs', () => {
       endDateTime: '2026-07-03T15:30:00',
     })
     const ics = buildIcs([event])
-    expect(ics).toContain('UID:abc@nabc-2026-companion')
+    expect(ics).toContain(`UID:abc@${EVENT.slug}`)
     expect(ics).toContain('DTSTART:20260703T140000')
     expect(ics).toContain('DTEND:20260703T153000')
     expect(ics).toContain('SUMMARY:Keynote')

@@ -1,5 +1,6 @@
 import { openDB } from 'idb'
 import type { DBSchema, IDBPDatabase } from 'idb'
+import { EVENT } from '../config/event'
 
 interface FavoritesDB extends DBSchema {
   favorites: {
@@ -12,7 +13,7 @@ let dbPromise: Promise<IDBPDatabase<FavoritesDB>> | null = null
 
 function getDb() {
   if (!dbPromise) {
-    dbPromise = openDB<FavoritesDB>('nabc-companion', 1, {
+    dbPromise = openDB<FavoritesDB>(`${EVENT.slug}-favorites`, 1, {
       upgrade(db) {
         db.createObjectStore('favorites', { keyPath: 'id' })
       },

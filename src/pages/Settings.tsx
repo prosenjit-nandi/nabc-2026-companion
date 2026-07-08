@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper'
 import { FaSyncAlt, FaTrashAlt } from 'react-icons/fa'
 import { useScheduleContext } from '../context/ScheduleContext'
 import { useThemeMode } from '../context/ThemeModeContext'
+import { EVENT } from '../config/event'
 
 export function Settings() {
   const { lastUpdated, refresh, loading, clearAll, favoriteIds } = useScheduleContext()
@@ -97,8 +98,8 @@ export function Settings() {
       <Divider />
       <Typography variant="caption" color="text.secondary">
         Schedule data sourced from{' '}
-        <Link href="https://nabcapp.com/custom/event-schedule.php" target="_blank" rel="noreferrer">
-          nabcapp.com
+        <Link href={EVENT.source.attributionUrl} target="_blank" rel="noreferrer">
+          {EVENT.source.label}
         </Link>
         .
       </Typography>

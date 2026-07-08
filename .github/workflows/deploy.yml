@@ -30,7 +30,7 @@ jobs:
 
       - run: npm ci
 
-      - name: Fetch latest NABC schedule
+      - name: Fetch latest schedule data
         run: node scripts/fetch-schedule.mjs
 
       - run: npm run build

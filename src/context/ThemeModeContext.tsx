@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { PaletteMode } from '@mui/material'
+import { EVENT } from '../config/event'
 
 export type ThemeModePreference = 'light' | 'dark' | 'system'
 
-const STORAGE_KEY = 'nabc-theme-mode'
+const STORAGE_KEY = `${EVENT.slug}-theme-mode`
 
 function readStoredPreference(): ThemeModePreference {
   const stored = localStorage.getItem(STORAGE_KEY)

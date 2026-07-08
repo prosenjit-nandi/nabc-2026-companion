@@ -3,8 +3,9 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import { FaRegStar, FaTimes } from 'react-icons/fa'
+import { EVENT } from '../config/event'
 
-const STORAGE_KEY = 'nabc-home-tip-dismissed'
+const STORAGE_KEY = `${EVENT.slug}-home-tip-dismissed`
 const TIP_TEXT = 'Tap the star to save a program to My Schedule'
 
 export function HomeTip() {

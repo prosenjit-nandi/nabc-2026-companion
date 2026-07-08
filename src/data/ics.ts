@@ -1,4 +1,5 @@
 import type { ScheduleEvent } from '../types/schedule'
+import { EVENT } from '../config/event'
 
 function toIcsDate(iso: string | null): string | null {
   if (!iso) return null
@@ -14,14 +15,14 @@ function escapeText(value: string): string {
 }
 
 export function buildIcs(events: ScheduleEvent[]): string {
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//NABC 2026 Companion//EN', 'CALSCALE:GREGORIAN']
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', `PRODID:-//${EVENT.fullName}//EN`, 'CALSCALE:GREGORIAN']
   for (const event of events) {
     const start = toIcsDate(event.startDateTime)
     const end = toIcsDate(event.endDateTime)
     if (!start || !end) continue
     lines.push(
       'BEGIN:VEVENT',
-      `UID:${event.id}@nabc-2026-companion`,
+      `UID:${event.id}@${EVENT.slug}`,
       `DTSTART:${start}`,
       `DTEND:${end}`,
       `SUMMARY:${escapeText(event.title)}`,
